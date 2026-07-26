@@ -16,7 +16,7 @@ This repository houses the architectural designs, network configurations, and se
 
 
 
-\## Access Control \& Inter-VLAN Routing Policies
+## Access Control \& Inter-VLAN Routing Policies
 
 
 
@@ -24,13 +24,13 @@ To enforce a zero-trust model without impacting administrative operations or ser
 
 
 
-\### Key Traffic Flows
+### Key Traffic Flows
 
-\* \*\*Trusted Egress to Isolated NVR:\*\* Devices within `USER (VLAN 20)` are permitted stateful outbound access explicitly to the `reolinknvr` IP address (managed via an OPNsense Host Alias) on `IoT (VLAN 40)`. This allows local viewing applications to establish video streams while blocking the camera tier from initiating any connections back into the production network.
+* **Trusted Egress to Isolated NVR:** Devices within `USER (VLAN 20)` are permitted stateful outbound access explicitly to the `reolinknvr` IP address (managed via an OPNsense Host Alias) on `IoT (VLAN 40)`. This allows local viewing applications to establish video streams while blocking the camera tier from initiating any connections back into the production network.
 
-\* \*\*Remote Ingress Framework:\*\* Inbound external access for off-network monitoring is currently facilitated via the NVR’s secure Unique Identifier (UID) relay mechanism. Future milestones include decommissioning this vendor-hosted relay and routing all external administrative and telemetry traffic exclusively over the \*\*Tailscale Mesh Overlay\*\*, maintaining complete WAN ingress isolation.
+* **Remote Ingress Framework:** Inbound external access for off-network monitoring is currently facilitated via the NVR’s secure Unique Identifier (UID) relay mechanism. Future milestones include decommissioning this vendor-hosted relay and routing all external administrative and telemetry traffic exclusively over the **Tailscale Mesh Overlay**, maintaining complete WAN ingress isolation.
 
-\* \*\*DNS Force-Routing:\*\* All VLAN interfaces enforce a port-forward redirection rule that captures any outbound port 53 (DNS) requests and forces them through the local `AdGuard Home` / `Unbound` stack, preventing compromised endpoints or hardcoded smart devices from bypassing internal domain filtering policies.
+* **DNS Force-Routing:** All VLAN interfaces enforce a port-forward redirection rule that captures any outbound port 53 (DNS) requests and forces them through the local `AdGuard Home`  `Unbound` stack, preventing compromised endpoints or hardcoded smart devices from bypassing internal domain filtering policies.
 
 
 
